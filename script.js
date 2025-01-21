@@ -23,3 +23,22 @@ glassCard.addEventListener('mouseleave', () => {
     glassCard.style.transform = 'rotateX(0) rotateY(0)';
     glassCard.classList.remove('pointer-transform');
 });
+
+
+document.querySelectorAll('.sidebar a').forEach(link => {
+    link.addEventListener('click', (event) => {
+        event.preventDefault(); // Evita el comportamiento por defecto
+        const targetId = link.getAttribute('href').slice(1); // Obtiene el ID de la sección
+        const targetElement = document.getElementById(targetId);
+
+        // Calcula la posición de la sección y aplica un desplazamiento adicional
+        const offset = 80; // Ajusta según el tamaño del margen superior deseado
+        const targetPosition = targetElement.offsetTop - offset;
+
+        // Desplazamiento suave al objetivo
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+    });
+});

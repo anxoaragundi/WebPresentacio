@@ -2,11 +2,20 @@
 
 body {
     background: #3d047a;
-background: -webkit-linear-gradient(280deg, #3d047a 0%, #062a68 100%);
-background: linear-gradient(280deg, #230249 0%, #01112e 100%);
+    background: -webkit-linear-gradient(280deg, #3d047a 0%, #062a68 100%);
+    background: linear-gradient(280deg, #230249 0%, #01112e 100%);
     color: #fff;
     margin: 0;
     font-family: Poppins, sans-serif;
+}
+
+.navbar {
+    padding: 15px 20px;
+    z-index: 100;
+}
+
+.navbar-toggler {
+    border: none;
 }
 
 .sidebar {
@@ -15,33 +24,16 @@ background: linear-gradient(280deg, #230249 0%, #01112e 100%);
     left: 0;
     height: 100%;
     width: 200px;
-    
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     padding-top: 20px;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .sidebar {
-        justify-content: center;
+        display: none; /* Esconde la sidebar en pantallas pequeñas */
     }
-}
-
-::-webkit-scrollbar {
-    display: none;
-}
-
-.sidebar a {
-    display: block;
-    color: white;
-    padding: 10px 15px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-.sidebar a:hover {
-    background-color: #575757;
 }
 
 .content {
@@ -49,8 +41,14 @@ background: linear-gradient(280deg, #230249 0%, #01112e 100%);
     padding: 20px;
 }
 
+@media (max-width: 768px) {
+    .content {
+        margin-left: 0;
+    }
+}
+
 section {
-    padding: 50px 0;
+    scroll-margin-top: 80px; /* Ajusta este valor según la altura del navbar */
 }
 
 #about, #career, #projects, #contact {
@@ -65,8 +63,8 @@ section {
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 15px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-    padding: 40px; /* Aumentado de 20px */
-    max-width: 800px; /* Aumentado de 500px */
+    padding: 40px;
+    max-width: 800px;
     margin: 20px auto;
     color: #fff;
     font-family: Arial, sans-serif;
@@ -90,11 +88,17 @@ section {
 }
 
 .profile-image {
-    width: 180px; /* Aumentado de 120px */
-    height: 180px; /* Aumentado de 120px */
+    width: 180px;
+    height: 180px;
     object-fit: cover;
     border-radius: 50%;
     border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.profile-image:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card-content {
@@ -105,4 +109,19 @@ section {
 
 .card-content h3 {
     margin-top: 0;
+}
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+.navbar-nav a {
+    color: white !important;
+    padding: 10px 15px;
+}
+
+.navbar-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
