@@ -23,16 +23,16 @@ document.querySelectorAll('.career-toggle').forEach(toggle => {
     });
 });
 
-// Obtener la referencia de la carta
+// Obtener la referencia de la carta de About Me
 const glassCard = document.getElementById('glassCard');
 
-// Configuración del efecto
+// Configuración del efecto de inclinación
 const maxTilt = 15; // Máximo ángulo de inclinación
 const perspective = 1000; // Perspectiva para el efecto 3D
 
 // Función para aplicar el efecto de inclinación
-function applyTiltEffect(event) {
-    const rect = glassCard.getBoundingClientRect();
+function applyTiltEffect(event, card) {
+    const rect = card.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
@@ -45,18 +45,39 @@ function applyTiltEffect(event) {
     const tiltX = percentY * maxTilt;
     const tiltY = percentX * maxTilt;
 
-    glassCard.style.transform = `perspective(${perspective}px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-    glassCard.style.transition = 'transform 0.1s ease-out';
+    card.style.transform = `perspective(${perspective}px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+    card.style.transition = 'transform 0.1s ease-out';
 }
 
 // Función para resetear la inclinación
-function resetTilt() {
-    glassCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-    glassCard.style.transition = 'transform 0.5s ease-out';
+function resetTilt(card) {
+    card.style.transform = `perspective(${perspective}px) rotateX(0deg) rotateY(0deg)`;
+    card.style.transition = 'transform 0.5s ease-out';
 }
 
-// Evento para detectar movimiento del puntero sobre la carta
-glassCard.addEventListener('mousemove', applyTiltEffect);
+// Aplicar efecto a la carta de About Me
+glassCard.addEventListener('mousemove', (event) => applyTiltEffect(event, glassCard));
+glassCard.addEventListener('mouseleave', () => resetTilt(glassCard));
 
-// Evento para resetear la posición cuando el puntero salga de la carta
-glassCard.addEventListener('mouseleave', resetTilt);
+// Obtener la referencia de la carta del proyecto en Projects
+const projectCard = document.getElementById('projectCard');
+
+// Aplicar efecto a la carta del proyecto
+projectCard.addEventListener('mousemove', (event) => applyTiltEffect(event, projectCard));
+projectCard.addEventListener('mouseleave', () => resetTilt(projectCard));
+
+// Ajuste de estilo para el botón del proyecto
+const projectButton = document.querySelector('#projectCard .btn-project');
+
+// Aplicar efecto al botón
+projectButton.addEventListener('mouseenter', () => {
+    projectButton.style.transform = 'scale(1.1)';
+    projectButton.style.boxShadow = '0 4px 20px rgba(255, 255, 255, 0.3)';
+    projectButton.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+});
+
+projectButton.addEventListener('mouseleave', () => {
+    projectButton.style.transform = 'scale(1)';
+    projectButton.style.boxShadow = 'none';
+    projectButton.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+});

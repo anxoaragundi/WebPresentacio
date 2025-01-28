@@ -159,7 +159,7 @@ section {
 }
 
 .career-content {
-    display: none;
+    display: block; /* Ahora está visible desde el inicio */
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.05);
     border-radius: 0 0 5px 5px;
@@ -238,5 +238,6 @@ section {
     border-color: #666666;
     background: #292929;
   }
-  
+
+
   
