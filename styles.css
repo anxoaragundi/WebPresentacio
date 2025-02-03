@@ -133,15 +133,29 @@ section {
     transition: background-color 0.3s;
 }
 
-.btn-primary {
-    background-color: #4CAF50;
-    color: white;
+
+.project-button-container {
+    display: flex;
+    justify-content: center;  /* Centra el botón horizontalmente */
+    margin-top: 20px;
 }
 
-.btn-secondary {
-    background-color: #008CBA;
-    color: white;
+.btn-project {
+    background-color: #ffffff; /* Fondo blanco */
+    color: #000000; /* Texto negro */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.btn-project:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Sombra negra para contraste */
+}
+
+
 
 .career-list {
     margin-top: 20px;

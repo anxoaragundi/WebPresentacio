@@ -1,6 +1,7 @@
+// Inicializar AOS
 AOS.init();
 
-// Smooth scrolling for sidebar links
+// Smooth scrolling para enlaces del sidebar
 document.querySelectorAll('.sidebar a').forEach(link => {
     link.addEventListener('click', (event) => {
         event.preventDefault();
@@ -15,16 +16,13 @@ document.querySelectorAll('.sidebar a').forEach(link => {
     });
 });
 
-// Career toggles
+// Toggles de la sección Career
 document.querySelectorAll('.career-toggle').forEach(toggle => {
     toggle.addEventListener('click', () => {
         const content = toggle.nextElementSibling;
         content.style.display = content.style.display === 'none' ? 'block' : 'none';
     });
 });
-
-// Obtener la referencia de la carta de About Me
-const glassCard = document.getElementById('glassCard');
 
 // Configuración del efecto de inclinación
 const maxTilt = 15; // Máximo ángulo de inclinación
@@ -55,29 +53,8 @@ function resetTilt(card) {
     card.style.transition = 'transform 0.5s ease-out';
 }
 
-// Aplicar efecto a la carta de About Me
-glassCard.addEventListener('mousemove', (event) => applyTiltEffect(event, glassCard));
-glassCard.addEventListener('mouseleave', () => resetTilt(glassCard));
-
-// Obtener la referencia de la carta del proyecto en Projects
-const projectCard = document.getElementById('projectCard');
-
-// Aplicar efecto a la carta del proyecto
-projectCard.addEventListener('mousemove', (event) => applyTiltEffect(event, projectCard));
-projectCard.addEventListener('mouseleave', () => resetTilt(projectCard));
-
-// Ajuste de estilo para el botón del proyecto
-const projectButton = document.querySelector('#projectCard .btn-project');
-
-// Aplicar efecto al botón
-projectButton.addEventListener('mouseenter', () => {
-    projectButton.style.transform = 'scale(1.1)';
-    projectButton.style.boxShadow = '0 4px 20px rgba(255, 255, 255, 0.3)';
-    projectButton.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
-});
-
-projectButton.addEventListener('mouseleave', () => {
-    projectButton.style.transform = 'scale(1)';
-    projectButton.style.boxShadow = 'none';
-    projectButton.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+// Aplicar efecto de inclinación a todas las cartas con la clase 'glass-card'
+document.querySelectorAll('.glass-card').forEach(card => {
+    card.addEventListener('mousemove', (event) => applyTiltEffect(event, card));
+    card.addEventListener('mouseleave', () => resetTilt(card));
 });
